@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Добавить цитату";
+}
+
+
+<div class="container">
+    <form id="addQuote" method="post" name="addQuote" class="form-horizontal">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-6"><h4>Добавить цитату</h4></div>
+                    <div class="col-md-6" align="right"><a href="Index">Отмена</a></div>
+                </div>
+            </div>
+            <div class="panel-body container">
+                <div class="row">
+                    <div class="form-group">
+                        <input value="" name="id" hidden>
+                        <label class="col-md-4 control-label" for="author">Автор:</label>
+                        <input class="col-md-6 form-control" type="text" placeholder="Автор..." name="author" id="author" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="category">Категория:</label>
+                        <select class="col-md-6 form-control" id="category" name="category" form="addQuote">
+                            <option disabled value=""> Категория</option>
+                            @foreach (var cat in ViewBag.categories)
+                            {
+                                <option value="@cat.id">@cat.name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <textarea form="addQuote" name="quote" class="form-control col-md-8 col-md-offset-4"  placeholder="Цитата..." required rows="10"></textarea>
+                </div>
+                <div align="center" class="row form-group">
+                    <input type="submit" value="Сохранить" class="btn btn-default col-md-4 col-md-offset-4">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

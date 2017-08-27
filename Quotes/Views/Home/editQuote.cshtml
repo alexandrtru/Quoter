@@ -1,0 +1,50 @@
+﻿@model Quotes.Models.Quote
+@{
+    ViewBag.Title = "editQuote";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <form id="editQuote" method="post" name="editQuote" class="form form-horizontal">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-6"><h4>Редактировать цитату</h4></div>
+                    <div class="col-md-6" align="right"><a href="Index">Отмена</a></div>
+                </div>
+            </div>
+            <div class="panel-body container">
+                <div class="row">
+                    <div class="form-group">
+                        <input value="@Model.id" name="id" hidden>
+                        <label class="col-md-4 control-label" for="author">Автор:</label>
+                        <input class="col-md-6 form-control" type="text" placeholder="Автор..." value="@Model.author" name="author" required />
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="category">Категория:</label>
+                        <select class="col-md-6 form-control" id="category" name="category" form="editQuote" >
+                            <option disabled selected value=""> Категория</option>
+                            @foreach (var cat in ViewBag.categoriesList)
+                            {
+                                if (Model.category == cat.id)
+                                {
+                                    <option value="@cat.id" selected>@cat.name</option>
+                                }
+                                else
+                                {
+                                    <option value="@cat.id">@cat.name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <textarea form="editQuote" name="quote" class="form-control col-md-8 col-md-offset-4" placeholder="Цитата..." required rows="5">@Model.quote</textarea>
+                </div>
+                <div align="center" class="row form-group">
+                    <input type="submit" value="Сохранить" class="btn btn-default col-md-4 col-md-offset-4">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

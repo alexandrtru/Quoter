@@ -1,0 +1,1 @@
+﻿Select * from Quotes  where author LIKE N'Бродский%' AND category = 1;
